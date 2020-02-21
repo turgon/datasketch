@@ -27,6 +27,8 @@ async def async_ordered_storage(config, name=None):
         if motor is None:
             raise RuntimeError('motor is not installed')
         return AsyncMongoListStorage(config, name=name)
+    if tp == 'custom' and 'ordered' in config:
+        return config['ordered'](config, name=name)
 
     raise ValueError('Unknown config ["type"]')
 
@@ -37,6 +39,8 @@ async def async_unordered_storage(config, name=None):
         if motor is None:
             raise RuntimeError('motor is not installed')
         return AsyncMongoSetStorage(config, name=name)
+    if tp == 'custom' and 'unordered' in config:
+        return config['unordered'](config, name=name)
 
     raise ValueError('Unknown config ["type"]')
 
