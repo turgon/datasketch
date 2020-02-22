@@ -92,10 +92,6 @@ class MinHash(object):
             # http://en.wikipedia.org/wiki/Universal_hashing
             self.permutations = np.array([generator.randint(1, _mersenne_prime, dtype=np.uint64, size=num_perm),
                                           generator.randint(0, _mersenne_prime, dtype=np.uint64, size=num_perm)], dtype=np.uint64)
-            print("new way")
-            #self.permutations = np.array([(generator.randint(1, _mersenne_prime, dtype=np.uint64),
-            #                               generator.randint(0, _mersenne_prime, dtype=np.uint64))
-            #                              for _ in range(num_perm)], dtype=np.uint64).T
         if len(self) != len(self.permutations[0]):
             raise ValueError("Numbers of hash values and permutations mismatch")
 
